@@ -5,19 +5,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Dockit-inspired brand with cycling amber/orange
+        // Brand blue
         brand: {
-          25:  '#FFFBF5',
-          50:  '#FFF5EB',
-          100: '#FFE5CC',
-          200: '#FFCB99',
-          300: '#FFB066',
-          400: '#FF9633',
-          500: '#E07A1F',
-          600: '#C4652A',
-          700: '#9E4F1A',
-          800: '#793C13',
-          900: '#53290D',
+          25:  '#F0F7FF',
+          50:  '#EFF6FF',
+          100: '#DBEAFE',
+          200: '#BFDBFE',
+          300: '#93C5FD',
+          400: '#60A5FA',
+          500: '#3B82F6',
+          600: '#2563EB',
+          700: '#1D4ED8',
+          800: '#1E40AF',
+          900: '#1E3A8A',
         },
         // Dockit-style grays
         surface: {
@@ -73,11 +73,11 @@ export default {
       boxShadow: {
         'card': '0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)',
         'card-hover': '0 10px 25px -5px rgba(0,0,0,0.08), 0 4px 10px -3px rgba(0,0,0,0.04)',
-        'glow': '0 0 60px rgba(196, 101, 42, 0.15)',
+        'glow': '0 0 60px rgba(37, 99, 235, 0.15)',
       },
       backgroundImage: {
-        'hero-gradient': 'radial-gradient(ellipse at 50% 0%, rgba(196,101,42,0.12) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(59,130,246,0.08) 0%, transparent 50%)',
-        'hero-gradient-dark': 'radial-gradient(ellipse at 50% 0%, rgba(196,101,42,0.20) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(59,130,246,0.12) 0%, transparent 50%)',
+        'hero-gradient': 'radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.10) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(37,99,235,0.06) 0%, transparent 50%)',
+        'hero-gradient-dark': 'radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.20) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(37,99,235,0.12) 0%, transparent 50%)',
         'dot-pattern': 'radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px)',
       },
       animation: {

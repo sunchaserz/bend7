@@ -11,16 +11,22 @@ const difficultyColors: Record<string, string> = {
   hard: 'badge-brand',
   extreme: 'badge-error',
 };
+
+const routeThumbs: Record<string, string> = {
+  'alpe-dhuez':     'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Alpe_d%27Huez%2C_France_%287957021508%29.jpg/800px-Alpe_d%27Huez%2C_France_%287957021508%29.jpg',
+  'col-du-galibier':'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Col-du-galibier1.jpg/800px-Col-du-galibier1.jpg',
+  'croix-de-fer':   'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Vue-generale-col-de-la-croix-de-fer.jpg/800px-Vue-generale-col-de-la-croix-de-fer.jpg',
+};
 ---
 <Base title="The cycling guide to Alpe d'Huez & Oisans">
 
   <!-- Hero — Dockit gradient mesh style -->
-  <section class="relative overflow-hidden bg-white dark:bg-dark-bg">
+  <section class="relative overflow-hidden bg-white dark:bg-dark-bg -mt-16">
     <!-- Gradient mesh background -->
     <div class="absolute inset-0 bg-hero-gradient dark:bg-hero-gradient-dark"></div>
     <div class="absolute inset-0 bg-dot-pattern [background-size:24px_24px] opacity-30 dark:opacity-10"></div>
 
-    <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40">
+<div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-8 pt-40 pb-24 sm:pt-48 sm:pb-32 lg:pt-56 lg:pb-40">
       <div class="mx-auto max-w-3xl text-center">
         <!-- Pill badge -->
         <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 dark:border-brand-700/40 dark:bg-brand-900/20">
@@ -58,7 +64,7 @@ const difficultyColors: Record<string, string> = {
   </section>
 
   <!-- Features — Dockit card grid -->
-  <section class="py-20 sm:py-28 border-t border-surface-200 dark:border-dark-border">
+  <section class="py-20 sm:py-28">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-16">
         <p class="section-label mb-3">Everything you need</p>
@@ -147,13 +153,19 @@ const difficultyColors: Record<string, string> = {
       </div>
 
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {featuredRoutes.map((route) => (
+        {featuredRoutes.map((route) => {
+          const routeId = route.id.replace(/\.md$/, '');
+          const thumb = routeThumbs[routeId];
+          return (
           <article class="card card-hover overflow-hidden !p-0">
-            <a href={`/routes/${route.id.replace(/\.md$/, '')}`} class="block">
+            <a href={`/routes/${routeId}`} class="block">
               <div class="aspect-[16/10] bg-surface-100 dark:bg-surface-800 relative overflow-hidden">
-                <div class="h-full w-full bg-gradient-to-br from-surface-100 to-surface-200 dark:from-surface-800 dark:to-surface-700 flex items-center justify-center">
-                  <svg class="h-12 w-12 text-surface-300 dark:text-surface-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15l6-6 4 4 8-8M21 10V3h-7"/></svg>
-                </div>
+                {thumb
+                  ? <img src={thumb} alt={route.data.title} class="h-full w-full object-cover" loading="lazy" />
+                  : <div class="h-full w-full bg-gradient-to-br from-surface-100 to-surface-200 dark:from-surface-800 dark:to-surface-700 flex items-center justify-center">
+                      <svg class="h-12 w-12 text-surface-300 dark:text-surface-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15l6-6 4 4 8-8M21 10V3h-7"/></svg>
+                    </div>
+                }
                 {route.data.tour_de_france && (
                   <span class="absolute top-3 left-3 badge badge-brand">Tour de France</span>
                 )}
@@ -184,7 +196,8 @@ const difficultyColors: Record<string, string> = {
               </div>
             </div>
           </article>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>

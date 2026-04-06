@@ -29,7 +29,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <!-- Prevent FOUC for dark mode -->
   <script is:inline>
-    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (localStorage.getItem('theme') !== 'light') {
       document.documentElement.classList.add('dark');
     }
   </script>
@@ -37,12 +37,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <body>
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 border-b border-surface-200 bg-white/80 backdrop-blur-xl dark:border-dark-border dark:bg-dark-bg/80">
+  <header class="sticky top-0 z-50">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <!-- Logo -->
-        <a href="/" class="flex items-baseline gap-0.5 text-xl font-bold tracking-tight">
-          <span class="text-surface-900 dark:text-white">bend</span><span class="text-brand-600 dark:text-brand-400">7</span>
+        <a href="/" class="flex items-baseline gap-0.5 text-2xl font-bold tracking-tight">
+          <span class="text-surface-900 dark:text-white">BB</span><span class="text-surface-900 dark:text-white">7</span>
         </a>
 
         <!-- Nav -->
@@ -161,8 +161,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 gap-8 py-16 md:grid-cols-4 lg:grid-cols-6">
         <div class="col-span-2">
-          <a href="/" class="flex items-baseline gap-0.5 text-xl font-bold tracking-tight">
-            <span class="text-surface-900 dark:text-white">bend</span><span class="text-brand-600 dark:text-brand-400">7</span>
+          <a href="/" class="flex items-baseline gap-0.5 text-2xl font-bold tracking-tight">
+            <span class="text-surface-900 dark:text-white">BB</span><span class="text-surface-900 dark:text-white">7</span>
           </a>
           <p class="mt-4 max-w-xs text-body-sm text-surface-500 dark:text-surface-400">
             The definitive cycling guide to the Oisans region. Written from the saddle by someone who lives here.
