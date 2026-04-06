@@ -27,51 +27,61 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <!-- Prevent FOUC for dark mode -->
+  <script is:inline>
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
 </head>
-<body class="bg-white">
+<body>
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-sm">
+  <header class="sticky top-0 z-50 border-b border-surface-200 bg-white/80 backdrop-blur-xl dark:border-dark-border dark:bg-dark-bg/80">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <!-- Logo -->
-        <a href="/" class="flex items-center gap-0.5 text-xl font-bold tracking-tight">
-          <span class="text-gray-900">bend</span><span class="text-brand-600">7</span>
+        <a href="/" class="flex items-baseline gap-0.5 text-xl font-bold tracking-tight">
+          <span class="text-surface-900 dark:text-white">bend</span><span class="text-brand-600 dark:text-brand-400">7</span>
         </a>
 
         <!-- Nav -->
         <nav class="hidden items-center gap-8 md:flex">
-          <a href="/routes" class="text-text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">Routes</a>
-          <a href="/plan" class="text-text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">Plan your trip</a>
-          <a href="/blog" class="text-text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">Stories</a>
-          <a href="/about" class="text-text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">About</a>
+          <a href="/routes" class="text-body-sm font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Routes</a>
+          <a href="/plan" class="text-body-sm font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Plan your trip</a>
+          <a href="/blog" class="text-body-sm font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Stories</a>
+          <a href="/about" class="text-body-sm font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">About</a>
         </nav>
 
-        <!-- CTA -->
-        <div class="hidden items-center gap-3 md:flex">
-          <a href="/gpx-packs" class="btn-secondary text-text-sm">GPX packs</a>
-          <a href="/newsletter" class="btn-primary text-text-sm">Get free routes</a>
-        </div>
+        <!-- Right side: theme toggle + CTA -->
+        <div class="flex items-center gap-3">
+          <!-- Dark mode toggle — Dockit style -->
+          <button id="theme-toggle" class="rounded-xl border border-surface-200 p-2 text-surface-500 hover:bg-surface-100 dark:border-dark-border dark:text-surface-400 dark:hover:bg-surface-800 transition-colors" aria-label="Toggle theme">
+            <svg class="h-5 w-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            <svg class="h-5 w-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </button>
 
-        <!-- Mobile menu button -->
-        <button class="md:hidden p-2 text-gray-600" id="mobile-menu-btn" aria-label="Menu">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
+          <a href="/newsletter" class="btn-primary hidden sm:inline-flex">Get free routes</a>
+
+          <!-- Mobile menu button -->
+          <button class="md:hidden rounded-xl border border-surface-200 p-2 text-surface-600 dark:border-dark-border dark:text-surface-400" id="mobile-menu-btn" aria-label="Menu">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
 
     <!-- Mobile menu -->
-    <div class="hidden border-t border-gray-200 bg-white px-4 pb-4 pt-2 md:hidden" id="mobile-menu">
+    <div class="hidden border-t border-surface-200 bg-white px-4 pb-4 pt-2 dark:border-dark-border dark:bg-dark-bg md:hidden" id="mobile-menu">
       <nav class="flex flex-col gap-1">
-        <a href="/routes" class="rounded-lg px-3 py-2 text-text-md font-medium text-gray-700 hover:bg-gray-50">Routes</a>
-        <a href="/plan" class="rounded-lg px-3 py-2 text-text-md font-medium text-gray-700 hover:bg-gray-50">Plan your trip</a>
-        <a href="/blog" class="rounded-lg px-3 py-2 text-text-md font-medium text-gray-700 hover:bg-gray-50">Stories</a>
-        <a href="/about" class="rounded-lg px-3 py-2 text-text-md font-medium text-gray-700 hover:bg-gray-50">About</a>
-        <div class="mt-3 flex flex-col gap-2">
-          <a href="/gpx-packs" class="btn-secondary justify-center">GPX packs</a>
-          <a href="/newsletter" class="btn-primary justify-center">Get free routes</a>
+        <a href="/routes" class="rounded-xl px-3 py-2.5 text-body-md font-medium text-surface-700 hover:bg-surface-50 dark:text-surface-300 dark:hover:bg-surface-800">Routes</a>
+        <a href="/plan" class="rounded-xl px-3 py-2.5 text-body-md font-medium text-surface-700 hover:bg-surface-50 dark:text-surface-300 dark:hover:bg-surface-800">Plan your trip</a>
+        <a href="/blog" class="rounded-xl px-3 py-2.5 text-body-md font-medium text-surface-700 hover:bg-surface-50 dark:text-surface-300 dark:hover:bg-surface-800">Stories</a>
+        <a href="/about" class="rounded-xl px-3 py-2.5 text-body-md font-medium text-surface-700 hover:bg-surface-50 dark:text-surface-300 dark:hover:bg-surface-800">About</a>
+        <div class="mt-3">
+          <a href="/newsletter" class="btn-primary w-full justify-center">Get free routes</a>
         </div>
       </nav>
     </div>
@@ -82,59 +92,66 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-gray-200 bg-white">
+  <footer class="border-t border-surface-200 bg-surface-50 dark:border-dark-border dark:bg-dark-card">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 gap-8 py-16 md:grid-cols-4 lg:grid-cols-6">
-        <!-- Brand -->
         <div class="col-span-2">
-          <a href="/" class="flex items-center gap-0.5 text-xl font-bold tracking-tight">
-            <span class="text-gray-900">bend</span><span class="text-brand-600">7</span>
+          <a href="/" class="flex items-baseline gap-0.5 text-xl font-bold tracking-tight">
+            <span class="text-surface-900 dark:text-white">bend</span><span class="text-brand-600 dark:text-brand-400">7</span>
           </a>
-          <p class="mt-4 max-w-xs text-text-md text-gray-600">
-            The definitive cycling guide to the Oisans region. Written from the saddle, by someone who lives here.
+          <p class="mt-4 max-w-xs text-body-sm text-surface-500 dark:text-surface-400">
+            The definitive cycling guide to the Oisans region. Written from the saddle by someone who lives here.
           </p>
         </div>
-        <!-- Routes -->
         <div>
-          <h4 class="text-text-sm font-semibold text-gray-900 mb-4">Routes</h4>
+          <h4 class="text-body-sm font-semibold text-surface-900 dark:text-white mb-4">Routes</h4>
           <ul class="space-y-3">
-            <li><a href="/routes/alpe-dhuez" class="text-text-sm text-gray-600 hover:text-gray-900">Alpe d'Huez</a></li>
-            <li><a href="/routes/col-du-galibier" class="text-text-sm text-gray-600 hover:text-gray-900">Col du Galibier</a></li>
-            <li><a href="/routes/croix-de-fer" class="text-text-sm text-gray-600 hover:text-gray-900">Croix de Fer</a></li>
-            <li><a href="/routes" class="text-text-sm text-gray-600 hover:text-gray-900">All routes</a></li>
+            <li><a href="/routes/alpe-dhuez" class="text-body-sm text-surface-500 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Alpe d'Huez</a></li>
+            <li><a href="/routes/col-du-galibier" class="text-body-sm text-surface-500 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Col du Galibier</a></li>
+            <li><a href="/routes/croix-de-fer" class="text-body-sm text-surface-500 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Croix de Fer</a></li>
+            <li><a href="/routes" class="text-body-sm text-surface-500 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">All routes</a></li>
           </ul>
         </div>
-        <!-- Plan -->
         <div>
-          <h4 class="text-text-sm font-semibold text-gray-900 mb-4">Plan</h4>
+          <h4 class="text-body-sm font-semibold text-surface-900 dark:text-white mb-4">Plan</h4>
           <ul class="space-y-3">
-            <li><a href="/plan/where-to-stay" class="text-text-sm text-gray-600 hover:text-gray-900">Where to stay</a></li>
-            <li><a href="/plan/bike-rental" class="text-text-sm text-gray-600 hover:text-gray-900">Bike rental</a></li>
-            <li><a href="/plan/getting-here" class="text-text-sm text-gray-600 hover:text-gray-900">Getting here</a></li>
-            <li><a href="/plan/when-to-visit" class="text-text-sm text-gray-600 hover:text-gray-900">When to visit</a></li>
+            <li><a href="/plan/where-to-stay" class="text-body-sm text-surface-500 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Where to stay</a></li>
+            <li><a href="/plan/bike-rental" class="text-body-sm text-surface-500 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Bike rental</a></li>
+            <li><a href="/plan/getting-here" class="text-body-sm text-surface-500 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Getting here</a></li>
+            <li><a href="/plan/when-to-visit" class="text-body-sm text-surface-500 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">When to visit</a></li>
           </ul>
         </div>
-        <!-- Connect -->
         <div>
-          <h4 class="text-text-sm font-semibold text-gray-900 mb-4">Connect</h4>
+          <h4 class="text-body-sm font-semibold text-surface-900 dark:text-white mb-4">Connect</h4>
           <ul class="space-y-3">
-            <li><a href="https://instagram.com/bend7" target="_blank" class="text-text-sm text-gray-600 hover:text-gray-900">Instagram</a></li>
-            <li><a href="https://strava.com/clubs/bend7" target="_blank" class="text-text-sm text-gray-600 hover:text-gray-900">Strava Club</a></li>
-            <li><a href="/newsletter" class="text-text-sm text-gray-600 hover:text-gray-900">Newsletter</a></li>
-            <li><a href="/contact" class="text-text-sm text-gray-600 hover:text-gray-900">Contact</a></li>
+            <li><a href="https://instagram.com/bend7" target="_blank" class="text-body-sm text-surface-500 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Instagram</a></li>
+            <li><a href="https://strava.com/clubs/bend7" target="_blank" class="text-body-sm text-surface-500 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Strava Club</a></li>
+            <li><a href="/newsletter" class="text-body-sm text-surface-500 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Newsletter</a></li>
           </ul>
         </div>
       </div>
-      <!-- Bottom -->
-      <div class="border-t border-gray-200 py-8">
-        <p class="text-text-sm text-gray-500">&copy; {new Date().getFullYear()} bend7. All rights reserved. Made from Le Cert, Auris-en-Oisans.</p>
+      <div class="border-t border-surface-200 dark:border-dark-border py-8">
+        <p class="text-body-sm text-surface-500 dark:text-surface-400">&copy; {new Date().getFullYear()} bend7. All rights reserved. Made from Le Cert, Auris-en-Oisans.</p>
       </div>
     </div>
   </footer>
 
   <script>
+    // Mobile menu
     document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
       document.getElementById('mobile-menu')?.classList.toggle('hidden');
+    });
+
+    // Dark mode toggle
+    document.getElementById('theme-toggle')?.addEventListener('click', () => {
+      const html = document.documentElement;
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
     });
   </script>
 </body>

@@ -6,7 +6,10 @@
 
 @layer base {
   body {
-    @apply font-sans text-gray-900 antialiased;
+    @apply font-sans text-surface-900 antialiased bg-white transition-colors duration-200;
+  }
+  .dark body {
+    @apply bg-dark-bg text-surface-200;
   }
   h1, h2, h3 {
     @apply font-display;
@@ -14,52 +17,125 @@
 }
 
 @layer components {
+  /* Badges — Dockit pill style */
   .badge {
-    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-text-xs font-medium;
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-body-xs font-medium border;
   }
   .badge-brand {
-    @apply bg-brand-50 text-brand-700;
+    @apply bg-brand-50 text-brand-700 border-brand-200;
+  }
+  .dark .badge-brand {
+    @apply bg-brand-900/30 text-brand-300 border-brand-700/40;
   }
   .badge-success {
-    @apply bg-success-50 text-success-700;
+    @apply bg-success-50 text-success-700 border-green-200;
   }
   .badge-warning {
-    @apply bg-warning-50 text-warning-700;
+    @apply bg-warning-50 text-warning-700 border-yellow-200;
   }
   .badge-error {
-    @apply bg-error-50 text-error-700;
+    @apply bg-error-50 text-error-700 border-red-200;
   }
   .badge-gray {
-    @apply bg-gray-100 text-gray-700;
+    @apply bg-surface-100 text-surface-600 border-surface-200;
   }
+  .dark .badge-gray {
+    @apply bg-surface-800 text-surface-400 border-surface-700;
+  }
+
+  /* Buttons — Dockit style */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-4.5 py-2.5 text-text-sm font-semibold text-white shadow-xs transition-colors hover:bg-brand-700 focus:outline-none focus:ring-4 focus:ring-brand-100;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-2.5 text-body-sm font-semibold text-white shadow-card transition-all duration-200 hover:bg-brand-700 hover:shadow-card-hover focus:outline-none focus:ring-4 focus:ring-brand-100;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4.5 py-2.5 text-text-sm font-semibold text-gray-700 shadow-xs transition-colors hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-100;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-surface-300 bg-white px-5 py-2.5 text-body-sm font-semibold text-surface-700 shadow-card transition-all duration-200 hover:bg-surface-50 hover:shadow-card-hover focus:outline-none focus:ring-4 focus:ring-surface-100;
   }
-  .btn-link {
-    @apply inline-flex items-center gap-2 text-text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors;
+  .dark .btn-secondary {
+    @apply border-dark-border bg-dark-card text-surface-300 hover:bg-surface-800;
   }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-body-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors;
+  }
+  .dark .btn-ghost {
+    @apply text-brand-400 hover:text-brand-300;
+  }
+
+  /* Cards — Dockit clean style */
+  .card {
+    @apply rounded-2xl border border-surface-200 bg-white p-6 shadow-card transition-all duration-200;
+  }
+  .card-hover:hover {
+    @apply shadow-card-hover -translate-y-0.5;
+  }
+  .dark .card {
+    @apply bg-dark-card border-dark-border;
+  }
+
+  /* Feature icon container — Dockit style */
+  .icon-box {
+    @apply flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-600;
+  }
+  .dark .icon-box {
+    @apply bg-brand-900/30 text-brand-400;
+  }
+
+  /* Section label — Dockit style */
+  .section-label {
+    @apply text-body-sm font-semibold text-brand-600;
+  }
+  .dark .section-label {
+    @apply text-brand-400;
+  }
+
+  /* Prose — route/blog content */
   .prose h2 {
-    @apply font-display text-display-sm text-gray-900 mt-12 mb-4;
+    @apply font-display text-display-md text-surface-900 mt-14 mb-4;
+  }
+  .dark .prose h2 {
+    @apply text-white;
   }
   .prose h3 {
-    @apply font-display text-display-xs text-gray-900 mt-8 mb-3;
+    @apply font-display text-display-sm text-surface-900 mt-10 mb-3;
+  }
+  .dark .prose h3 {
+    @apply text-surface-100;
   }
   .prose p {
-    @apply text-text-lg text-gray-600 mb-6 max-w-[65ch];
+    @apply text-body-lg text-surface-600 mb-6 max-w-[65ch];
+  }
+  .dark .prose p {
+    @apply text-surface-400;
   }
   .prose strong {
-    @apply text-gray-900 font-semibold;
+    @apply text-surface-900 font-semibold;
+  }
+  .dark .prose strong {
+    @apply text-white;
   }
   .prose ul, .prose ol {
-    @apply mb-6 pl-6 text-text-lg text-gray-600;
+    @apply mb-6 pl-6 text-body-lg text-surface-600;
+  }
+  .dark .prose ul, .dark .prose ol {
+    @apply text-surface-400;
   }
   .prose li {
     @apply mb-2;
   }
   .prose a {
-    @apply text-brand-600 underline underline-offset-2 hover:text-brand-700;
+    @apply text-brand-600 underline underline-offset-2 decoration-brand-200 hover:decoration-brand-500 transition-colors;
+  }
+  .dark .prose a {
+    @apply text-brand-400 decoration-brand-700 hover:decoration-brand-400;
+  }
+
+  /* Stats value — Dockit number style */
+  .stat-value {
+    @apply font-display text-display-sm text-surface-900;
+  }
+  .dark .stat-value {
+    @apply text-white;
+  }
+  .stat-label {
+    @apply text-body-xs text-surface-500 mt-1;
   }
 }

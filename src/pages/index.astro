@@ -14,88 +14,146 @@ const difficultyColors: Record<string, string> = {
 ---
 <Base title="The cycling guide to Alpe d'Huez & Oisans">
 
-  <!-- Hero -->
-  <section class="relative overflow-hidden bg-gray-900 py-24 sm:py-32">
-    <div class="absolute inset-0 bg-gradient-to-b from-gray-900/80 to-gray-900/95 z-10"></div>
-    <div class="absolute inset-0 opacity-30" style="background-image: url('https://images.unsplash.com/photo-1568730156015-946c3b8f8d09?w=1920&q=80'); background-size: cover; background-position: center 40%;"></div>
-    <div class="relative z-20 mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-400/30 bg-brand-500/10 px-3 py-1">
-          <span class="h-1.5 w-1.5 rounded-full bg-brand-400"></span>
-          <span class="text-text-sm font-medium text-brand-300">7 cols &middot; One valley &middot; Infinite suffering</span>
+  <!-- Hero — Dockit gradient mesh style -->
+  <section class="relative overflow-hidden bg-white dark:bg-dark-bg">
+    <!-- Gradient mesh background -->
+    <div class="absolute inset-0 bg-hero-gradient dark:bg-hero-gradient-dark"></div>
+    <div class="absolute inset-0 bg-dot-pattern [background-size:24px_24px] opacity-30 dark:opacity-10"></div>
+
+    <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40">
+      <div class="mx-auto max-w-3xl text-center">
+        <!-- Pill badge -->
+        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 dark:border-brand-700/40 dark:bg-brand-900/20">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand-500 animate-pulse"></span>
+          <span class="text-body-sm font-medium text-brand-700 dark:text-brand-300">7 cols &middot; One valley &middot; Infinite suffering</span>
         </div>
-        <h1 class="text-display-xl sm:text-display-2xl text-white mb-6">
+
+        <h1 class="text-display-xl sm:text-display-2xl text-surface-900 dark:text-white mb-6">
           Ride the most legendary climbs in cycling
         </h1>
-        <p class="text-text-xl text-gray-300 max-w-2xl mb-8">
+        <p class="text-body-lg text-surface-500 dark:text-surface-400 max-w-2xl mx-auto mb-10">
           Routes, GPX files, insider tips, and everything you need to plan your cycling trip to Alpe d'Huez and the Oisans valley. Written from the saddle by someone who lives here.
         </p>
-        <div class="flex flex-wrap gap-3">
-          <a href="/routes" class="btn-primary !px-6 !py-3 !text-text-md">
-            Explore routes
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </a>
-          <a href="/plan/where-to-stay" class="inline-flex items-center gap-2 rounded-lg border border-gray-500 px-6 py-3 text-text-md font-semibold text-white hover:bg-white/5 transition-colors">
-            Plan your trip
-          </a>
+
+        <!-- Search bar — Dockit style -->
+        <div class="mx-auto max-w-lg relative">
+          <div class="flex items-center rounded-2xl border border-surface-300 bg-white shadow-card dark:border-dark-border dark:bg-dark-card overflow-hidden">
+            <svg class="ml-4 h-5 w-5 text-surface-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" placeholder="Search routes, climbs, or tips..." class="w-full bg-transparent px-4 py-3.5 text-body-md text-surface-900 placeholder-surface-400 focus:outline-none dark:text-white dark:placeholder-surface-500" />
+            <kbd class="mr-3 hidden rounded-lg border border-surface-200 bg-surface-100 px-2 py-0.5 text-body-xs text-surface-500 dark:border-dark-border dark:bg-surface-800 sm:inline-block">⌘K</kbd>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div class="mt-6 flex flex-wrap justify-center gap-2">
+          <span class="text-body-sm text-surface-400 dark:text-surface-500 mr-1">Popular:</span>
+          <a href="/routes/alpe-dhuez" class="text-body-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">Alpe d'Huez</a>
+          <span class="text-surface-300 dark:text-surface-600">&middot;</span>
+          <a href="/routes/col-du-galibier" class="text-body-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">Galibier</a>
+          <span class="text-surface-300 dark:text-surface-600">&middot;</span>
+          <a href="/routes/croix-de-fer" class="text-body-sm font-medium text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300">Croix de Fer</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Stats bar -->
-  <section class="border-b border-gray-200 bg-gray-50">
+  <!-- Features — Dockit card grid -->
+  <section class="py-20 sm:py-28 border-t border-surface-200 dark:border-dark-border">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 divide-x divide-gray-200 sm:grid-cols-4">
-        <div class="py-6 px-4 text-center sm:py-8">
-          <p class="font-display text-display-sm text-gray-900">7</p>
-          <p class="text-text-sm text-gray-600 mt-1">Legendary cols</p>
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <p class="section-label mb-3">Everything you need</p>
+        <h2 class="text-display-lg text-surface-900 dark:text-white">Plan the perfect cycling trip</h2>
+        <p class="mt-4 text-body-lg text-surface-500 dark:text-surface-400">
+          Explore the tools and local knowledge that make your Oisans cycling trip unforgettable.
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="card card-hover text-center">
+          <div class="icon-box mx-auto mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+          </div>
+          <h3 class="font-sans text-body-lg font-semibold text-surface-900 dark:text-white mb-2">Detailed GPX files</h3>
+          <p class="text-body-sm text-surface-500 dark:text-surface-400">Every turn marked, every water stop noted. Download to your Garmin or phone.</p>
         </div>
-        <div class="py-6 px-4 text-center sm:py-8">
-          <p class="font-display text-display-sm text-gray-900">1,850m</p>
-          <p class="text-text-sm text-gray-600 mt-1">Highest summit</p>
+        <div class="card card-hover text-center">
+          <div class="icon-box mx-auto mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-sans text-body-lg font-semibold text-surface-900 dark:text-white mb-2">Local insider tips</h3>
+          <p class="text-body-sm text-surface-500 dark:text-surface-400">Written by a resident who rides these roads daily. Not a visitor — a local.</p>
         </div>
-        <div class="py-6 px-4 text-center sm:py-8">
-          <p class="font-display text-display-sm text-gray-900">21</p>
-          <p class="text-text-sm text-gray-600 mt-1">Famous hairpins</p>
+        <div class="card card-hover text-center">
+          <div class="icon-box mx-auto mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <h3 class="font-sans text-body-lg font-semibold text-surface-900 dark:text-white mb-2">Where to stay & eat</h3>
+          <p class="text-body-sm text-surface-500 dark:text-surface-400">Cycling-friendly accommodation and the best post-ride cafés, curated.</p>
         </div>
-        <div class="py-6 px-4 text-center sm:py-8">
-          <p class="font-display text-display-sm text-gray-900">1,000+</p>
-          <p class="text-text-sm text-gray-600 mt-1">Cyclists per day</p>
+        <div class="card card-hover text-center">
+          <div class="icon-box mx-auto mb-4">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+          </div>
+          <h3 class="font-sans text-body-lg font-semibold text-surface-900 dark:text-white mb-2">Road conditions</h3>
+          <p class="text-body-sm text-surface-500 dark:text-surface-400">Real-time seasonal updates. Which cols are open and what the weather's doing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps — Dockit numbered section -->
+  <section class="py-20 sm:py-28 bg-surface-50 border-y border-surface-200 dark:bg-dark-card dark:border-dark-border">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <p class="section-label mb-3">How it works</p>
+        <h2 class="text-display-lg text-surface-900 dark:text-white">Plan your ride in 3 steps</h2>
+      </div>
+
+      <div class="grid gap-12 lg:grid-cols-3">
+        <div class="text-center">
+          <div class="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-600 text-white font-bold text-body-lg">1</div>
+          <h3 class="font-sans text-display-xs font-semibold text-surface-900 dark:text-white mb-3">Pick your route</h3>
+          <p class="text-body-md text-surface-500 dark:text-surface-400">Browse our collection of rides — from the iconic 21 hairpins to hidden balcony roads only locals know.</p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-600 text-white font-bold text-body-lg">2</div>
+          <h3 class="font-sans text-display-xs font-semibold text-surface-900 dark:text-white mb-3">Download the GPX</h3>
+          <p class="text-body-md text-surface-500 dark:text-surface-400">Load the route on your Garmin or phone. Every water stop, café, and tricky section is marked.</p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-600 text-white font-bold text-body-lg">3</div>
+          <h3 class="font-sans text-display-xs font-semibold text-surface-900 dark:text-white mb-3">Ride & enjoy</h3>
+          <p class="text-body-md text-surface-500 dark:text-surface-400">Hit the road with confidence. You know the route, the stops, and the local secrets. Just pedal.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Featured Routes -->
-  <section class="py-16 sm:py-24">
+  <section class="py-20 sm:py-28">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
       <div class="flex items-end justify-between mb-12">
         <div>
-          <p class="text-text-sm font-semibold text-brand-600 mb-3">Featured routes</p>
-          <h2 class="text-display-md text-gray-900">The iconic climbs</h2>
-          <p class="mt-4 text-text-lg text-gray-600 max-w-2xl">
-            Every route comes with GPX files, elevation profiles, water stop locations, and insider tips you won't find anywhere else.
+          <p class="section-label mb-3">Featured routes</p>
+          <h2 class="text-display-lg text-surface-900 dark:text-white">The iconic climbs</h2>
+          <p class="mt-4 text-body-lg text-surface-500 dark:text-surface-400 max-w-2xl">
+            Each route includes a GPX file, elevation data, water stops, and tips you won't find anywhere else.
           </p>
         </div>
-        <a href="/routes" class="btn-link hidden sm:inline-flex">
-          View all routes
-          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        <a href="/routes" class="btn-ghost hidden sm:inline-flex">
+          View all
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
       </div>
 
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {featuredRoutes.map((route) => (
-          <article class="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xs transition-shadow hover:shadow-lg">
+          <article class="card card-hover overflow-hidden !p-0">
             <a href={`/routes/${route.id.replace(/\.md$/, '')}`} class="block">
-              <div class="aspect-[16/10] bg-gray-100 relative overflow-hidden">
-                {route.data.hero_image ? (
-                  <img src={route.data.hero_image} alt={route.data.title} class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
-                ) : (
-                  <div class="h-full w-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <svg class="h-12 w-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15l6-6 4 4 8-8M21 10V3h-7"/></svg>
-                  </div>
-                )}
+              <div class="aspect-[16/10] bg-surface-100 dark:bg-surface-800 relative overflow-hidden">
+                <div class="h-full w-full bg-gradient-to-br from-surface-100 to-surface-200 dark:from-surface-800 dark:to-surface-700 flex items-center justify-center">
+                  <svg class="h-12 w-12 text-surface-300 dark:text-surface-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15l6-6 4 4 8-8M21 10V3h-7"/></svg>
+                </div>
                 {route.data.tour_de_france && (
                   <span class="absolute top-3 left-3 badge badge-brand">Tour de France</span>
                 )}
@@ -104,105 +162,54 @@ const difficultyColors: Record<string, string> = {
             <div class="p-6">
               <div class="flex items-center gap-2 mb-3">
                 <span class={`badge ${difficultyColors[route.data.difficulty]}`}>{route.data.difficulty}</span>
-                <span class="badge badge-gray">{route.data.category.replace('-', ' ')}</span>
               </div>
-              <h3 class="text-display-xs text-gray-900 mb-2">
-                <a href={`/routes/${route.id.replace(/\.md$/, '')}`} class="hover:text-brand-600 transition-colors">{route.data.title}</a>
+              <h3 class="font-display text-display-xs text-surface-900 dark:text-white mb-2">
+                <a href={`/routes/${route.id.replace(/\.md$/, '')}`} class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">{route.data.title}</a>
               </h3>
-              <p class="text-text-md text-gray-600 line-clamp-2 mb-5">{route.data.description}</p>
-              <div class="flex items-center gap-6 border-t border-gray-100 pt-4">
+              <p class="text-body-sm text-surface-500 dark:text-surface-400 line-clamp-2 mb-5">{route.data.description}</p>
+
+              <div class="flex items-center gap-6 border-t border-surface-100 dark:border-dark-border pt-4">
                 <div>
-                  <p class="text-text-sm font-semibold text-gray-900">{route.data.distance_km}km</p>
-                  <p class="text-text-xs text-gray-500">Distance</p>
+                  <p class="text-body-sm font-semibold text-surface-900 dark:text-white">{route.data.distance_km}km</p>
+                  <p class="text-body-xs text-surface-400">Distance</p>
                 </div>
                 <div>
-                  <p class="text-text-sm font-semibold text-gray-900">{route.data.elevation_m}m</p>
-                  <p class="text-text-xs text-gray-500">Elevation</p>
+                  <p class="text-body-sm font-semibold text-surface-900 dark:text-white">{route.data.elevation_m}m</p>
+                  <p class="text-body-xs text-surface-400">Elevation</p>
                 </div>
                 <div>
-                  <p class="text-text-sm font-semibold text-gray-900">{route.data.avg_gradient}%</p>
-                  <p class="text-text-xs text-gray-500">Avg grade</p>
+                  <p class="text-body-sm font-semibold text-surface-900 dark:text-white">{route.data.avg_gradient}%</p>
+                  <p class="text-body-xs text-surface-400">Avg grade</p>
                 </div>
-                {route.data.summit_altitude && (
-                  <div>
-                    <p class="text-text-sm font-semibold text-gray-900">{route.data.summit_altitude}m</p>
-                    <p class="text-text-xs text-gray-500">Summit</p>
-                  </div>
-                )}
               </div>
             </div>
           </article>
         ))}
       </div>
-
-      <a href="/routes" class="btn-link mt-8 sm:hidden">
-        View all routes
-        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-      </a>
     </div>
   </section>
 
-  <!-- The 7 Cols Feature -->
-  <section class="bg-gray-50 py-16 sm:py-24 border-y border-gray-200">
-    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8 text-center">
-      <div class="mx-auto max-w-2xl">
-        <span class="badge badge-brand mb-4">The bend7 concept</span>
-        <h2 class="text-display-md text-gray-900 mt-4">7 legendary cols from one valley</h2>
-        <p class="mt-5 text-text-lg text-gray-600">
-          Bourg d'Oisans sits at the crossroads of cycling's most famous climbs. Within riding distance: Alpe d'Huez, Col du Galibier, Col du Glandon, Col de la Croix de Fer, Col de Sarenne, Col du Lautaret, and Col d'Ornon. No transfers. No car. Just ride.
-        </p>
-      </div>
-      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 text-left">
-        <div class="rounded-xl border border-gray-200 bg-white p-6">
-          <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
-          </div>
-          <h3 class="font-sans text-text-lg font-semibold text-gray-900">Detailed GPX files</h3>
-          <p class="mt-2 text-text-sm text-gray-600">Download routes to your Garmin or phone. Every turn marked, every water stop noted.</p>
-        </div>
-        <div class="rounded-xl border border-gray-200 bg-white p-6">
-          <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          </div>
-          <h3 class="font-sans text-text-lg font-semibold text-gray-900">Local insider tips</h3>
-          <p class="mt-2 text-text-sm text-gray-600">Written by someone who rides these roads daily. Not a visitor — a resident.</p>
-        </div>
-        <div class="rounded-xl border border-gray-200 bg-white p-6">
-          <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-          </div>
-          <h3 class="font-sans text-text-lg font-semibold text-gray-900">Where to stay & eat</h3>
-          <p class="mt-2 text-text-sm text-gray-600">Curated cycling-friendly accommodation and the best post-ride cafés.</p>
-        </div>
-        <div class="rounded-xl border border-gray-200 bg-white p-6">
-          <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
-          </div>
-          <h3 class="font-sans text-text-lg font-semibold text-gray-900">Road conditions</h3>
-          <p class="mt-2 text-text-sm text-gray-600">Real-time seasonal updates. Which cols are open, where the ice is, what the weather's doing.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Newsletter CTA -->
-  <section class="bg-gray-900 py-16 sm:py-24">
-    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8 text-center">
+  <!-- Newsletter CTA — Dockit bottom section -->
+  <section class="relative overflow-hidden bg-surface-900 dark:bg-surface-950 py-20 sm:py-28">
+    <div class="absolute inset-0 bg-hero-gradient-dark opacity-50"></div>
+    <div class="relative mx-auto max-w-wide px-4 sm:px-6 lg:px-8 text-center">
       <div class="mx-auto max-w-xl">
-        <span class="badge !bg-brand-500/10 !text-brand-300 border border-brand-400/30 mb-4">Join the climb</span>
-        <h2 class="text-display-md text-white mt-4">Get the free starter GPX pack</h2>
-        <p class="mt-5 text-text-lg text-gray-400">
-          Three classic Oisans routes with turn-by-turn notes, plus weekly updates on road conditions, events, and new routes.
+        <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-400/30 bg-brand-500/10 px-4 py-1.5">
+          <span class="text-body-sm font-medium text-brand-300">Join the climb</span>
+        </div>
+        <h2 class="text-display-lg text-white mt-2">Get the free starter GPX pack</h2>
+        <p class="mt-5 text-body-lg text-surface-400">
+          Three classic Oisans routes with turn-by-turn notes, plus weekly updates on road conditions and new routes.
         </p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <input
             type="email"
             placeholder="Enter your email"
-            class="rounded-lg border border-gray-600 bg-gray-800 px-4 py-3 text-text-md text-white placeholder-gray-400 focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-500/20 sm:min-w-[320px]"
+            class="rounded-xl border border-surface-600 bg-surface-800 px-4 py-3 text-body-md text-white placeholder-surface-500 focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-500/20 sm:min-w-[320px]"
           />
-          <button class="btn-primary !py-3 !px-6 !text-text-md">Send me the routes</button>
+          <button class="btn-primary !py-3 !px-6">Send me the routes</button>
         </div>
-        <p class="mt-4 text-text-sm text-gray-500">No spam. Unsubscribe anytime. We ride bikes, not your inbox.</p>
+        <p class="mt-4 text-body-sm text-surface-500">No spam. Unsubscribe anytime. We ride bikes, not your inbox.</p>
       </div>
     </div>
   </section>

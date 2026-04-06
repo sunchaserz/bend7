@@ -1,12 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        // Brand
+        // Dockit-inspired brand with cycling amber/orange
         brand: {
-          25:  '#FFFAF5',
+          25:  '#FFFBF5',
           50:  '#FFF5EB',
           100: '#FFE5CC',
           200: '#FFCB99',
@@ -17,87 +18,82 @@ export default {
           700: '#9E4F1A',
           800: '#793C13',
           900: '#53290D',
-          950: '#2E1707',
         },
-        // Grays (Untitled UI style)
-        gray: {
-          25:  '#FCFCFD',
+        // Dockit-style grays
+        surface: {
+          0:   '#FFFFFF',
           50:  '#F9FAFB',
-          100: '#F2F4F7',
-          200: '#EAECF0',
-          300: '#D0D5DD',
-          400: '#98A2B3',
-          500: '#667085',
-          600: '#475467',
-          700: '#344054',
-          800: '#1D2939',
-          900: '#101828',
-          950: '#0C111D',
+          100: '#F3F4F6',
+          200: '#E5E7EB',
+          300: '#D1D5DB',
+          400: '#9CA3AF',
+          500: '#6B7280',
+          600: '#4B5563',
+          700: '#374151',
+          800: '#1F2937',
+          900: '#111827',
+          950: '#0A0F1A',
         },
-        // Success (for easy difficulty)
-        success: {
-          50:  '#ECFDF3',
-          500: '#12B76A',
-          700: '#027A48',
+        // Dark mode surfaces
+        dark: {
+          bg:      '#0F1117',
+          card:    '#171923',
+          border:  '#2D3348',
+          muted:   '#9CA3AF',
         },
-        // Warning (for moderate)
-        warning: {
-          50:  '#FFFAEB',
-          500: '#F79009',
-          700: '#B54708',
-        },
-        // Error (for extreme)
-        error: {
-          50:  '#FEF3F2',
-          500: '#F04438',
-          700: '#B42318',
-        },
-        // Alpine green
-        alpine: {
-          50:  '#F0F9F4',
-          100: '#D1F0DF',
-          500: '#2E7D4F',
-          700: '#1B5E38',
-          900: '#0D3A20',
-        },
+        // Semantic
+        success: { 50: '#ECFDF3', 100: '#D1FAE5', 500: '#10B981', 700: '#047857' },
+        warning: { 50: '#FFFBEB', 100: '#FEF3C7', 500: '#F59E0B', 700: '#B45309' },
+        error:   { 50: '#FEF2F2', 100: '#FEE2E2', 500: '#EF4444', 700: '#B91C1C' },
       },
       fontFamily: {
         display: ['"DM Serif Display"', 'Georgia', 'serif'],
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
       },
       fontSize: {
-        'display-2xl': ['4.5rem',   { lineHeight: '1.1', letterSpacing: '-0.02em' }],
-        'display-xl':  ['3.75rem',  { lineHeight: '1.1', letterSpacing: '-0.02em' }],
-        'display-lg':  ['3rem',     { lineHeight: '1.15', letterSpacing: '-0.02em' }],
-        'display-md':  ['2.25rem',  { lineHeight: '1.2', letterSpacing: '-0.02em' }],
-        'display-sm':  ['1.875rem', { lineHeight: '1.25' }],
-        'display-xs':  ['1.5rem',   { lineHeight: '1.3' }],
-        'text-xl':     ['1.25rem',  { lineHeight: '1.5' }],
-        'text-lg':     ['1.125rem', { lineHeight: '1.6' }],
-        'text-md':     ['1rem',     { lineHeight: '1.5' }],
-        'text-sm':     ['0.875rem', { lineHeight: '1.4' }],
-        'text-xs':     ['0.75rem',  { lineHeight: '1.3' }],
-      },
-      spacing: {
-        '4.5': '1.125rem',
-        '18':  '4.5rem',
-        '22':  '5.5rem',
+        'display-2xl': ['4rem',     { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'display-xl':  ['3rem',     { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'display-lg':  ['2.25rem',  { lineHeight: '1.15', letterSpacing: '-0.02em' }],
+        'display-md':  ['1.875rem', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
+        'display-sm':  ['1.5rem',   { lineHeight: '1.3' }],
+        'display-xs':  ['1.25rem',  { lineHeight: '1.4' }],
+        'body-lg':     ['1.125rem', { lineHeight: '1.7' }],
+        'body-md':     ['1rem',     { lineHeight: '1.7' }],
+        'body-sm':     ['0.875rem', { lineHeight: '1.5' }],
+        'body-xs':     ['0.75rem',  { lineHeight: '1.4' }],
       },
       maxWidth: {
-        'content': '768px',
-        'wide': '1280px',
+        'content': '720px',
+        'wide': '1200px',
       },
       borderRadius: {
-        'xl': '0.75rem',
-        '2xl': '1rem',
-        '3xl': '1.5rem',
+        'xl': '12px',
+        '2xl': '16px',
       },
       boxShadow: {
-        'xs': '0 1px 2px 0 rgba(16, 24, 40, 0.05)',
-        'sm': '0 1px 3px 0 rgba(16, 24, 40, 0.10), 0 1px 2px 0 rgba(16, 24, 40, 0.06)',
-        'md': '0 4px 8px -2px rgba(16, 24, 40, 0.10), 0 2px 4px -2px rgba(16, 24, 40, 0.06)',
-        'lg': '0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03)',
-        'xl': '0 20px 24px -4px rgba(16, 24, 40, 0.08), 0 8px 8px -4px rgba(16, 24, 40, 0.03)',
+        'card': '0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)',
+        'card-hover': '0 10px 25px -5px rgba(0,0,0,0.08), 0 4px 10px -3px rgba(0,0,0,0.04)',
+        'glow': '0 0 60px rgba(196, 101, 42, 0.15)',
+      },
+      backgroundImage: {
+        'hero-gradient': 'radial-gradient(ellipse at 50% 0%, rgba(196,101,42,0.12) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(59,130,246,0.08) 0%, transparent 50%)',
+        'hero-gradient-dark': 'radial-gradient(ellipse at 50% 0%, rgba(196,101,42,0.20) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(59,130,246,0.12) 0%, transparent 50%)',
+        'dot-pattern': 'radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px)',
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.6s ease-out forwards',
+        'slide-up': 'slideUp 0.6s ease-out forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
       },
     },
   },
