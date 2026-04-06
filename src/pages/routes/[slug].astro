@@ -1,0 +1,144 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const routes = await getCollection('routes');
+  return routes.map((route) => ({
+    params: { slug: route.id.replace(/\.md$/, '') },
+    props: { route },
+  }));
+}
+
+const { route } = Astro.props;
+const { Content } = await render(route);
+
+const difficultyColors: Record<string, string> = {
+  easy: 'badge-success',
+  moderate: 'badge-warning',
+  hard: 'badge-brand',
+  extreme: 'badge-error',
+};
+---
+<Base title={route.data.title} description={route.data.description}>
+
+  <!-- Route hero -->
+  <section class="bg-gray-900 py-16 sm:py-24">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-2 mb-4">
+          <span class={`badge ${difficultyColors[route.data.difficulty]}`}>{route.data.difficulty}</span>
+          <span class="badge badge-gray">{route.data.category.replace('-', ' ')}</span>
+          {route.data.tour_de_france && <span class="badge badge-brand">Tour de France</span>}
+        </div>
+        <h1 class="text-display-xl text-white mb-4">{route.data.title}</h1>
+        {route.data.subtitle && <p class="text-text-xl text-gray-400">{route.data.subtitle}</p>}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <section class="border-b border-gray-200 bg-gray-50">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-3 divide-x divide-gray-200 sm:grid-cols-6">
+        <div class="py-5 px-4 text-center">
+          <p class="text-text-lg font-semibold text-gray-900">{route.data.distance_km}km</p>
+          <p class="text-text-xs text-gray-500 mt-0.5">Distance</p>
+        </div>
+        <div class="py-5 px-4 text-center">
+          <p class="text-text-lg font-semibold text-gray-900">{route.data.elevation_m}m</p>
+          <p class="text-text-xs text-gray-500 mt-0.5">Elevation</p>
+        </div>
+        <div class="py-5 px-4 text-center">
+          <p class="text-text-lg font-semibold text-gray-900">{route.data.avg_gradient}%</p>
+          <p class="text-text-xs text-gray-500 mt-0.5">Avg grade</p>
+        </div>
+        <div class="py-5 px-4 text-center">
+          <p class="text-text-lg font-semibold text-gray-900">{route.data.max_gradient}%</p>
+          <p class="text-text-xs text-gray-500 mt-0.5">Max grade</p>
+        </div>
+        {route.data.summit_altitude && (
+          <div class="py-5 px-4 text-center">
+            <p class="text-text-lg font-semibold text-gray-900">{route.data.summit_altitude}m</p>
+            <p class="text-text-xs text-gray-500 mt-0.5">Summit</p>
+          </div>
+        )}
+        <div class="py-5 px-4 text-center">
+          <p class="text-text-lg font-semibold text-gray-900">{route.data.start_location}</p>
+          <p class="text-text-xs text-gray-500 mt-0.5">Start</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-12 sm:py-16">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-12 lg:grid-cols-[1fr_320px]">
+        <!-- Main content -->
+        <div class="prose max-w-content">
+          <Content />
+
+          <!-- Insider tip -->
+          {route.data.insider_tip && (
+            <div class="mt-10 rounded-xl border border-brand-200 bg-brand-25 p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-100 text-brand-600">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <p class="text-text-sm font-semibold text-brand-700">Insider tip</p>
+              </div>
+              <p class="text-text-md text-brand-800 !mb-0">{route.data.insider_tip}</p>
+            </div>
+          )}
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-6">
+          <!-- GPX Download card -->
+          <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-xs">
+            <h3 class="font-sans text-text-lg font-semibold text-gray-900 mb-2">Download GPX</h3>
+            <p class="text-text-sm text-gray-600 mb-4">Get this route on your Garmin, Wahoo, or phone.</p>
+            <a href={route.data.gpx_file || '#'} class="btn-primary w-full justify-center mb-3">Download free</a>
+            <a href="/gpx-packs" class="btn-secondary w-full justify-center">Get all 7 cols pack</a>
+          </div>
+
+          <!-- Water stops -->
+          {route.data.water_stops && route.data.water_stops.length > 0 && (
+            <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-xs">
+              <h3 class="font-sans text-text-lg font-semibold text-gray-900 mb-4">Water & food stops</h3>
+              <ul class="space-y-3">
+                {route.data.water_stops.map((stop: string) => (
+                  <li class="flex gap-3 text-text-sm text-gray-600">
+                    <svg class="h-5 w-5 flex-shrink-0 text-brand-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    {stop}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Best months -->
+          {route.data.best_months && route.data.best_months.length > 0 && (
+            <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-xs">
+              <h3 class="font-sans text-text-lg font-semibold text-gray-900 mb-3">Best time to ride</h3>
+              <div class="flex flex-wrap gap-2">
+                {route.data.best_months.map((month: string) => (
+                  <span class="badge badge-gray">{month}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Stay CTA -->
+          <div class="rounded-xl border border-gray-200 bg-gray-50 p-6">
+            <h3 class="font-sans text-text-lg font-semibold text-gray-900 mb-2">Need a place to stay?</h3>
+            <p class="text-text-sm text-gray-600 mb-4">Bend 7 — our premium house in Auris-en-Oisans, 5 minutes from the base of Alpe d'Huez.</p>
+            <a href="/stay" class="btn-link">Learn about Bend 7 house &rarr;</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</Base>

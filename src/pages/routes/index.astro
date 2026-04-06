@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const routes = await getCollection('routes', ({ data }) => data.published);
+
+const difficultyColors: Record<string, string> = {
+  easy: 'badge-success',
+  moderate: 'badge-warning',
+  hard: 'badge-brand',
+  extreme: 'badge-error',
+};
+---
+<Base title="All cycling routes" description="Every cycling route in the Oisans region — from iconic Tour de France climbs to hidden local gems. GPX files, elevation profiles, and insider tips.">
+
+  <section class="bg-white py-16 sm:py-24">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <p class="text-text-sm font-semibold text-brand-600 mb-3">Routes & climbs</p>
+        <h1 class="text-display-lg text-gray-900">All cycling routes</h1>
+        <p class="mt-4 text-text-lg text-gray-600">
+          From legendary Tour de France climbs to hidden balcony roads. Every route includes a GPX download, elevation data, and insider tips.
+        </p>
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {routes.map((route) => (
+          <article class="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xs transition-shadow hover:shadow-lg">
+            <a href={`/routes/${route.id.replace(/\.md$/, '')}`} class="block">
+              <div class="aspect-[16/10] bg-gray-100 relative overflow-hidden">
+                {route.data.hero_image ? (
+                  <img src={route.data.hero_image} alt={route.data.title} class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                ) : (
+                  <div class="h-full w-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                    <svg class="h-12 w-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15l6-6 4 4 8-8M21 10V3h-7"/></svg>
+                  </div>
+                )}
+                {route.data.tour_de_france && (
+                  <span class="absolute top-3 left-3 badge badge-brand">Tour de France</span>
+                )}
+              </div>
+            </a>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class={`badge ${difficultyColors[route.data.difficulty]}`}>{route.data.difficulty}</span>
+                <span class="badge badge-gray">{route.data.category.replace('-', ' ')}</span>
+              </div>
+              <h3 class="text-display-xs text-gray-900 mb-2">
+                <a href={`/routes/${route.id.replace(/\.md$/, '')}`} class="hover:text-brand-600 transition-colors">{route.data.title}</a>
+              </h3>
+              <p class="text-text-md text-gray-600 line-clamp-2 mb-5">{route.data.description}</p>
+              <div class="flex items-center gap-6 border-t border-gray-100 pt-4">
+                <div>
+                  <p class="text-text-sm font-semibold text-gray-900">{route.data.distance_km}km</p>
+                  <p class="text-text-xs text-gray-500">Distance</p>
+                </div>
+                <div>
+                  <p class="text-text-sm font-semibold text-gray-900">{route.data.elevation_m}m</p>
+                  <p class="text-text-xs text-gray-500">Elevation</p>
+                </div>
+                <div>
+                  <p class="text-text-sm font-semibold text-gray-900">{route.data.avg_gradient}%</p>
+                  <p class="text-text-xs text-gray-500">Avg grade</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Base>

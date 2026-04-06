@@ -1,0 +1,141 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description = "The definitive cycling guide to the Oisans region. Routes, GPX files, and everything you need to ride Alpe d'Huez and beyond.", image } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | bend7</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  {image && <meta property="og:image" content={image} />}
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+</head>
+<body class="bg-white">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-sm">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-0.5 text-xl font-bold tracking-tight">
+          <span class="text-gray-900">bend</span><span class="text-brand-600">7</span>
+        </a>
+
+        <!-- Nav -->
+        <nav class="hidden items-center gap-8 md:flex">
+          <a href="/routes" class="text-text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">Routes</a>
+          <a href="/plan" class="text-text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">Plan your trip</a>
+          <a href="/blog" class="text-text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">Stories</a>
+          <a href="/about" class="text-text-sm font-semibold text-gray-600 hover:text-gray-900 transition-colors">About</a>
+        </nav>
+
+        <!-- CTA -->
+        <div class="hidden items-center gap-3 md:flex">
+          <a href="/gpx-packs" class="btn-secondary text-text-sm">GPX packs</a>
+          <a href="/newsletter" class="btn-primary text-text-sm">Get free routes</a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button class="md:hidden p-2 text-gray-600" id="mobile-menu-btn" aria-label="Menu">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="hidden border-t border-gray-200 bg-white px-4 pb-4 pt-2 md:hidden" id="mobile-menu">
+      <nav class="flex flex-col gap-1">
+        <a href="/routes" class="rounded-lg px-3 py-2 text-text-md font-medium text-gray-700 hover:bg-gray-50">Routes</a>
+        <a href="/plan" class="rounded-lg px-3 py-2 text-text-md font-medium text-gray-700 hover:bg-gray-50">Plan your trip</a>
+        <a href="/blog" class="rounded-lg px-3 py-2 text-text-md font-medium text-gray-700 hover:bg-gray-50">Stories</a>
+        <a href="/about" class="rounded-lg px-3 py-2 text-text-md font-medium text-gray-700 hover:bg-gray-50">About</a>
+        <div class="mt-3 flex flex-col gap-2">
+          <a href="/gpx-packs" class="btn-secondary justify-center">GPX packs</a>
+          <a href="/newsletter" class="btn-primary justify-center">Get free routes</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 bg-white">
+    <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 gap-8 py-16 md:grid-cols-4 lg:grid-cols-6">
+        <!-- Brand -->
+        <div class="col-span-2">
+          <a href="/" class="flex items-center gap-0.5 text-xl font-bold tracking-tight">
+            <span class="text-gray-900">bend</span><span class="text-brand-600">7</span>
+          </a>
+          <p class="mt-4 max-w-xs text-text-md text-gray-600">
+            The definitive cycling guide to the Oisans region. Written from the saddle, by someone who lives here.
+          </p>
+        </div>
+        <!-- Routes -->
+        <div>
+          <h4 class="text-text-sm font-semibold text-gray-900 mb-4">Routes</h4>
+          <ul class="space-y-3">
+            <li><a href="/routes/alpe-dhuez" class="text-text-sm text-gray-600 hover:text-gray-900">Alpe d'Huez</a></li>
+            <li><a href="/routes/col-du-galibier" class="text-text-sm text-gray-600 hover:text-gray-900">Col du Galibier</a></li>
+            <li><a href="/routes/croix-de-fer" class="text-text-sm text-gray-600 hover:text-gray-900">Croix de Fer</a></li>
+            <li><a href="/routes" class="text-text-sm text-gray-600 hover:text-gray-900">All routes</a></li>
+          </ul>
+        </div>
+        <!-- Plan -->
+        <div>
+          <h4 class="text-text-sm font-semibold text-gray-900 mb-4">Plan</h4>
+          <ul class="space-y-3">
+            <li><a href="/plan/where-to-stay" class="text-text-sm text-gray-600 hover:text-gray-900">Where to stay</a></li>
+            <li><a href="/plan/bike-rental" class="text-text-sm text-gray-600 hover:text-gray-900">Bike rental</a></li>
+            <li><a href="/plan/getting-here" class="text-text-sm text-gray-600 hover:text-gray-900">Getting here</a></li>
+            <li><a href="/plan/when-to-visit" class="text-text-sm text-gray-600 hover:text-gray-900">When to visit</a></li>
+          </ul>
+        </div>
+        <!-- Connect -->
+        <div>
+          <h4 class="text-text-sm font-semibold text-gray-900 mb-4">Connect</h4>
+          <ul class="space-y-3">
+            <li><a href="https://instagram.com/bend7" target="_blank" class="text-text-sm text-gray-600 hover:text-gray-900">Instagram</a></li>
+            <li><a href="https://strava.com/clubs/bend7" target="_blank" class="text-text-sm text-gray-600 hover:text-gray-900">Strava Club</a></li>
+            <li><a href="/newsletter" class="text-text-sm text-gray-600 hover:text-gray-900">Newsletter</a></li>
+            <li><a href="/contact" class="text-text-sm text-gray-600 hover:text-gray-900">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Bottom -->
+      <div class="border-t border-gray-200 py-8">
+        <p class="text-text-sm text-gray-500">&copy; {new Date().getFullYear()} bend7. All rights reserved. Made from Le Cert, Auris-en-Oisans.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu')?.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

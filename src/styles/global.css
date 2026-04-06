@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans text-gray-900 antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-text-xs font-medium;
+  }
+  .badge-brand {
+    @apply bg-brand-50 text-brand-700;
+  }
+  .badge-success {
+    @apply bg-success-50 text-success-700;
+  }
+  .badge-warning {
+    @apply bg-warning-50 text-warning-700;
+  }
+  .badge-error {
+    @apply bg-error-50 text-error-700;
+  }
+  .badge-gray {
+    @apply bg-gray-100 text-gray-700;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-4.5 py-2.5 text-text-sm font-semibold text-white shadow-xs transition-colors hover:bg-brand-700 focus:outline-none focus:ring-4 focus:ring-brand-100;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4.5 py-2.5 text-text-sm font-semibold text-gray-700 shadow-xs transition-colors hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-100;
+  }
+  .btn-link {
+    @apply inline-flex items-center gap-2 text-text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors;
+  }
+  .prose h2 {
+    @apply font-display text-display-sm text-gray-900 mt-12 mb-4;
+  }
+  .prose h3 {
+    @apply font-display text-display-xs text-gray-900 mt-8 mb-3;
+  }
+  .prose p {
+    @apply text-text-lg text-gray-600 mb-6 max-w-[65ch];
+  }
+  .prose strong {
+    @apply text-gray-900 font-semibold;
+  }
+  .prose ul, .prose ol {
+    @apply mb-6 pl-6 text-text-lg text-gray-600;
+  }
+  .prose li {
+    @apply mb-2;
+  }
+  .prose a {
+    @apply text-brand-600 underline underline-offset-2 hover:text-brand-700;
+  }
+}
