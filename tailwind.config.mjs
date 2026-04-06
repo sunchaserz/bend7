@@ -5,19 +5,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Brand blue
+        // Brand coral
         brand: {
-          25:  '#F0F7FF',
-          50:  '#EFF6FF',
-          100: '#DBEAFE',
-          200: '#BFDBFE',
-          300: '#93C5FD',
-          400: '#60A5FA',
-          500: '#3B82F6',
-          600: '#2563EB',
-          700: '#1D4ED8',
-          800: '#1E40AF',
-          900: '#1E3A8A',
+          25:  '#FFF5F3',
+          50:  '#FFEDE9',
+          100: '#FFD8D0',
+          200: '#FFB8AC',
+          300: '#FF9888',
+          400: '#FF8870',
+          500: '#FF7964',
+          600: '#E5604A',
+          700: '#C04535',
+          800: '#963325',
+          900: '#6E2419',
         },
         // Dockit-style grays
         surface: {
@@ -34,12 +34,12 @@ export default {
           900: '#111827',
           950: '#0A0F1A',
         },
-        // Dark mode surfaces
+        // Dark mode surfaces — near black
         dark: {
-          bg:      '#0F1117',
-          card:    '#171923',
-          border:  '#2D3348',
-          muted:   '#9CA3AF',
+          bg:      '#0A0A0A',
+          card:    '#141414',
+          border:  '#222222',
+          muted:   '#888888',
         },
         // Semantic
         success: { 50: '#ECFDF3', 100: '#D1FAE5', 500: '#10B981', 700: '#047857' },
@@ -51,8 +51,8 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
       },
       fontSize: {
-        'display-2xl': ['3.75rem', { lineHeight: '1.1', letterSpacing: '-0.025em', fontWeight: '700' }],
-        'display-xl':  ['3rem',    { lineHeight: '1.1', letterSpacing: '-0.025em', fontWeight: '700' }],
+        'display-2xl': ['4.125rem', { lineHeight: '1.1', letterSpacing: '-0.025em', fontWeight: '700' }],
+        'display-xl':  ['3.3rem',   { lineHeight: '1.1', letterSpacing: '-0.025em', fontWeight: '700' }],
         'display-lg':  ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
         'display-md':  ['1.75rem', { lineHeight: '1.25', letterSpacing: '-0.02em', fontWeight: '700' }],
         'display-sm':  ['1.5rem',  { lineHeight: '1.3', letterSpacing: '-0.01em', fontWeight: '600' }],
@@ -73,11 +73,11 @@ export default {
       boxShadow: {
         'card': '0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)',
         'card-hover': '0 10px 25px -5px rgba(0,0,0,0.08), 0 4px 10px -3px rgba(0,0,0,0.04)',
-        'glow': '0 0 60px rgba(37, 99, 235, 0.15)',
+        'glow': '0 0 60px rgba(240, 106, 82, 0.20)',
       },
       backgroundImage: {
-        'hero-gradient': 'radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.10) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(37,99,235,0.06) 0%, transparent 50%)',
-        'hero-gradient-dark': 'radial-gradient(ellipse at 50% 0%, rgba(37,99,235,0.20) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(37,99,235,0.12) 0%, transparent 50%)',
+        'hero-gradient': 'radial-gradient(ellipse at 80% 50%, rgba(232,96,60,0.06) 0%, transparent 50%)',
+        'hero-gradient-dark': 'radial-gradient(ellipse at 80% 50%, rgba(232,96,60,0.10) 0%, transparent 50%)',
         'dot-pattern': 'radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px)',
       },
       animation: {
