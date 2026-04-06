@@ -163,7 +163,7 @@ const difficultyColors: Record<string, string> = {
               <div class="flex items-center gap-2 mb-3">
                 <span class={`badge ${difficultyColors[route.data.difficulty]}`}>{route.data.difficulty}</span>
               </div>
-              <h3 class="font-display text-display-xs text-surface-900 dark:text-white mb-2">
+              <h3 class="text-display-xs text-surface-900 dark:text-white mb-2">
                 <a href={`/routes/${route.id.replace(/\.md$/, '')}`} class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">{route.data.title}</a>
               </h3>
               <p class="text-body-sm text-surface-500 dark:text-surface-400 line-clamp-2 mb-5">{route.data.description}</p>

@@ -26,7 +26,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <!-- Prevent FOUC for dark mode -->
   <script is:inline>
     if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -47,10 +47,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
         <!-- Nav -->
         <nav class="hidden items-center gap-8 md:flex">
-          <a href="/routes" class="text-body-sm font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Routes</a>
-          <a href="/plan" class="text-body-sm font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Plan your trip</a>
-          <a href="/blog" class="text-body-sm font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Stories</a>
-          <a href="/about" class="text-body-sm font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">About</a>
+          <a href="/routes" class="text-body-md font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Routes</a>
+          <a href="/plan" class="text-body-md font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Plan your trip</a>
+          <a href="/blog" class="text-body-md font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">Stories</a>
+          <a href="/about" class="text-body-md font-medium text-surface-600 hover:text-surface-900 dark:text-surface-400 dark:hover:text-white transition-colors">About</a>
         </nav>
 
         <!-- Right side: theme toggle + CTA -->
