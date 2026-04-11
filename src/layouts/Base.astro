@@ -36,6 +36,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 </head>
 <body>
 
+  <!-- Full-page background image -->
+  <div class="fixed inset-0 -z-10">
+    <img src="/images/bg-forest.jpg" alt="" aria-hidden="true" class="h-full w-full object-cover object-top" />
+  </div>
+
   <!-- Header -->
   <header class="sticky top-0 z-50">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
