@@ -36,8 +36,8 @@ export default {
         },
         // Dark mode surfaces — near black
         dark: {
-          bg:      '#0A0A0A',
-          card:    '#141414',
+          bg:      '#000000',
+          card:    '#000000',
           border:  '#222222',
           muted:   '#888888',
         },
