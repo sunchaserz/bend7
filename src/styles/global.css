@@ -62,7 +62,10 @@
     @apply shadow-card-hover -translate-y-0.5;
   }
   .dark .card {
-    @apply bg-dark-card border-dark-border;
+    border-color: transparent;
+    background:
+      linear-gradient(135deg, rgb(45 45 45 / 15%), rgb(25 25 25 / 8%)) padding-box,
+      linear-gradient(135deg, rgb(255 255 255 / 0.18), rgb(255 255 255 / 0.04)) border-box;
   }
 
   .icon-box {
