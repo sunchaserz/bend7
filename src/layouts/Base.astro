@@ -41,6 +41,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <img src="/images/bg-forest.jpg" alt="" aria-hidden="true" class="h-full w-full object-cover object-top" />
   </div>
 
+  <!-- Fog parallax layer -->
+  <div id="fog-layer" class="fixed inset-0 -z-10 pointer-events-none will-change-transform" aria-hidden="true">
+    <img
+      src="/images/fog.png"
+      alt=""
+      class="w-full h-[130%] object-cover object-bottom"
+      style="transform-origin: bottom center;"
+    />
+  </div>
+
   <!-- Header -->
   <header class="sticky top-0 z-50">
     <div class="mx-auto max-w-wide px-4 sm:px-6 lg:px-8">
@@ -205,6 +215,43 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       </div>
     </div>
   </footer>
+
+  <!-- Fog parallax -->
+  <script is:inline>
+    (() => {
+      const fog = document.getElementById('fog-layer');
+      if (!fog) return;
+
+      let ticking = false;
+      let currentY = 0;
+      let targetY = 0;
+      const SPEED = 0.18; // fog moves at 18% of scroll speed (slower = more depth)
+      const LERP  = 0.07; // smoothing factor
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      function update() {
+        targetY = window.scrollY * SPEED;
+        currentY = lerp(currentY, targetY, LERP);
+        fog.style.transform = `translateY(-${currentY}px)`;
+
+        // Keep animating for smooth lerp
+        if (Math.abs(currentY - targetY) > 0.1) {
+          requestAnimationFrame(update);
+          ticking = false;
+        } else {
+          ticking = false;
+        }
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
 
   <script>
     // Mobile menu
