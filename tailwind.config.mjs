@@ -36,9 +36,9 @@ export default {
         },
         // Dark mode surfaces — near black
         dark: {
-          bg:      '#000000',
-          card:    '#000000',
-          border:  '#222222',
+          bg:      '#1a1a1aD9',
+          card:    '#1a1a1aD9',
+          border:  '#333333',
           muted:   '#888888',
         },
         // Semantic
